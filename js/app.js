@@ -13,6 +13,10 @@ myApp.config(function($routeProvider, $locationProvider) {
 			templateUrl : 'views/notifications.html',
 			controller  : 'notificationsController'
 		})
+		.when('/monitoring', {
+			templateUrl : 'views/monitoring.html',
+			controller  : 'monitoringController'
+		})
 		.when('/security', {
 			templateUrl : 'views/security.html',
 			controller  : 'notificationsController'
@@ -33,6 +37,16 @@ myApp.controller('notificationsController', function($scope, $http, $routeParams
 			}
 		}
 	);
+});
+
+myApp.controller('monitoringController', function($scope, $http, $routeParams) {
+	/*$http.get("php/testing.php")
+		.success(function (response) {
+			if (response) {
+				$scope.data = response.data;
+			}
+		*/
+	$scope.data = '{"data": [{"name": "Title","count": "11","status": "dirty"}]}';
 });
 
 myApp.controller('notificationsController', function($scope, $http, $routeParams) {

@@ -1,0 +1,18 @@
+<div ng-repeat="row in data" class="myStyle-smallCard myStyle-squareCard mdl-shadow--2dp ng-scope">
+	<div id="dashboard-showSearch-view" class="dashboard-ng-view-container">
+		<div class="card-title">
+			{{ row.name }}
+		</div>
+		<div class="card-content">
+			<div ng-if="row.status == 'clean'">
+				<img src="../images/toilet-bowl.jpg" alt="Dirty Toilet Bowl" height="200" width="200">
+			</div>
+			<div ng-if="row.status == 'dirty'">
+				<img src="../images/toilet-bowl-dirty.jpg" alt="Dirty Toilet Bowl" height="200" width="200">
+			</div>  
+		</div>
+		<div class="card-count">
+			{{ row.count }}
+		</div>
+	</div>
+</div>

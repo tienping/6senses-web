@@ -39,3 +39,26 @@
 .myStyle-smallCard .dashboard-ng-view-container {
 	padding: 2% 2% 2% 2%;
 }
+
+.myStyle-squareCard {
+	width: inherit;
+	margin: 1% 1%;
+}
+
+.myStyle-squareCard  .card-title {
+    text-align: center;
+	padding: 2% 2%;
+	border-radius: 15px;
+}
+
+.myStyle-squareCard  .card-title.clean {
+    background-color: green;
+}
+
+.myStyle-squareCard  .card-title.dirty {
+    background-color: red;
+}
+
+.myStyle-squareCard  .card-content {
+	margin: 5% 5%;
+}
