@@ -1,16 +1,17 @@
 <div ng-repeat="row in data" class="myStyle-smallCard myStyle-squareCard mdl-shadow--2dp ng-scope">
-	<div id="dashboard-showSearch-view" class="dashboard-ng-view-container">
-		<div class="card-title">
+	<div id="dashboard-square-card-view" class="dashboard-ng-view-container" ng-class="{'alert-card': row.status == 'dirty'}">
+		<div class="card-title" ng-class="row.status">
 			{{ row.name }}
 		</div>
 		<div class="card-content">
 			<div ng-if="row.status == 'clean'">
-				<img src="../images/toilet-bowl.jpg" alt="Dirty Toilet Bowl" height="200" width="200">
+				<img src="http://cdn.flaticon.com/svg/67/67287.svg" alt="Dirty Toilet Bowl" height="100" width="100">
 			</div>
 			<div ng-if="row.status == 'dirty'">
-				<img src="../images/toilet-bowl-dirty.jpg" alt="Dirty Toilet Bowl" height="200" width="200">
+				<img src="http://cdn.flaticon.com/svg/67/67287.svg" alt="Dirty Toilet Bowl" height="100" width="100">
 			</div>  
 		</div>
+		<a ng-show="row.status=='dirty'"><div class="card-action" ng-click="onToiletCleanAction()">Clean</div></a>
 		<div class="card-count">
 			{{ row.count }}
 		</div>

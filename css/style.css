@@ -42,23 +42,53 @@
 
 .myStyle-squareCard {
 	width: inherit;
-	margin: 1% 1%;
+	margin: 1% 0.8%;
 }
 
 .myStyle-squareCard  .card-title {
-    text-align: center;
+	text-align: center;
 	padding: 2% 2%;
-	border-radius: 15px;
+	border-radius: 15px 15px 5px 5px;
 }
 
 .myStyle-squareCard  .card-title.clean {
-    background-color: green;
+	background-color: green;
+	color: white;
 }
 
 .myStyle-squareCard  .card-title.dirty {
-    background-color: red;
+	background-color: red;
 }
 
 .myStyle-squareCard  .card-content {
 	margin: 5% 5%;
+}
+
+.myStyle-squareCard  .card-action {
+	float: left;
+    background-color: red;
+    color: black;
+    border-radius: 15px;
+    margin: 3%;
+	padding: 3%;
+}
+
+.myStyle-squareCard  .card-count {
+	float: right;
+	font-size: large;
+	padding: 6%;
+	font-style: underline;
+}
+
+.alert-card {
+  -webkit-animation-name: blinker;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+  -webkit-animation-duration:0.7s;
+}
+
+@-webkit-keyframes blinker {
+    0% { background-color: yellow; }
+    50% { background-color: transparent; }
+    100% { background-color: yellow; }
 }
