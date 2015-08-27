@@ -1,0 +1,16 @@
+<div ng-repeat="row in data" class="myStyle-smallCard mdl-shadow--2dp ng-scope">
+	<div id="dashboard-showSearch-view" class="dashboard-ng-view-container">
+		<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+			<tbody>
+				<tr>
+					<td class="ng-binding">{{ row.recordID }}</td>
+					<td class="ng-binding">{{ row.date }}</</td>
+					<td class="mdl-data-table__cell--non-numeric ng-binding">{{ row.teacherName }}</</td>
+					<td class="mdl-data-table__cell--non-numeric ng-binding">{{ row.meritTitle }}</</td>
+					<td class="ng-binding">{{ row.meritValue }}</</td>
+					<td class="mdl-data-table__cell--non-numeric ng-binding">{{ row.comment }}</</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
