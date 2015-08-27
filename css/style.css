@@ -40,20 +40,29 @@
 	padding: 2% 2% 2% 2%;
 }
 
+.floor-div {
+	width: 100%;
+}
+
 .myStyle-squareCard {
-	width: inherit;
+	width: 115px;
 	margin: 1% 0.8%;
+	float: left;
 }
 
 .myStyle-squareCard  .card-title {
 	text-align: center;
 	padding: 2% 2%;
-	border-radius: 15px 15px 5px 5px;
+	border-radius: 15px 15px 0px 0px;
+	background-color: lightgray;
 }
 
 .myStyle-squareCard  .card-title.clean {
-	background-color: green;
-	color: white;
+	background-color: lime;
+}
+
+.myStyle-squareCard  .card-title.warning {
+	background-color: orange;
 }
 
 .myStyle-squareCard  .card-title.dirty {
@@ -66,29 +75,54 @@
 
 .myStyle-squareCard  .card-action {
 	float: left;
-    background-color: red;
-    color: black;
-    border-radius: 15px;
-    margin: 3%;
-	padding: 3%;
+	background-color: salmon;
+	color: black;
+	border-radius: 15px;
+	margin: 3%;
+	padding: 12%;
+	position: absolute;
+	top: 35%;
+	left: 15%;
+	opacity: 0.8;
+    box-shadow: 0px 0px 47px #FF4000;
+	display: none;
 }
 
 .myStyle-squareCard  .card-count {
+	font-size: x-large;
+	padding: 4%;
+    margin: 0% 0% 7% 0%;
+	color: #222;
+	text-align: center;
+    box-shadow: 0px 3px 0px #888888;
+    /*border-radius: 100%;*/
+}
+
+.myStyle-squareCard  .card-gender {
+	float: left;
+}
+
+.myStyle-squareCard  .card-floor {
 	float: right;
-	font-size: large;
-	padding: 6%;
-	font-style: underline;
+    font-size: small;
+	font-style: italic;
+    margin: 0% 0% 4% 0%;
+}
+
+.myStyle-squareCard  .card-alertTime {
+    float: right;
+    margin: 0% 0% 4% 0%;
 }
 
 .alert-card {
   -webkit-animation-name: blinker;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
-  -webkit-animation-duration:0.7s;
+  -webkit-animation-duration: 3s;
 }
 
 @-webkit-keyframes blinker {
-    0% { background-color: yellow; }
-    50% { background-color: transparent; }
-    100% { background-color: yellow; }
+	0% { background-color: yellow; }
+	50% { background-color: #FFFF66; }
+	100% { background-color: yellow; }
 }

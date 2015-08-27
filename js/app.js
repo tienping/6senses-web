@@ -1,6 +1,6 @@
 // create the module and name it scotchApp
 	// also include ngRoute for all our routing needs
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 // configure our routes
 myApp.config(function($routeProvider, $locationProvider) {
@@ -40,78 +40,100 @@ myApp.controller('notificationsController', function($scope, $http, $routeParams
 });
 
 myApp.controller('monitoringController', function($scope, $http, $routeParams) {
-	$scope.onToiletCleanAction = function onToiletCleanAction() {
+	$scope.onToiletCleanAction = function onToiletCleanAction(targetID) {
 		alert("clean toilet to be built");
+		/*$http.get("http://tienpingx2.96.lt/php/searchResult.php?studentID=1")
+			.success(function (response) {
+				if (response) {
+					$scope.data = response.data;
+					$scope.total = response.total;
+				}
+			}
+		);*/
 	};
 	
 	$http.get("index.php")
 		.success(function (response) {
 			if (response) {
-				$scope.data = [{
+				var data = [{
 					name: "G1a", 
-					floor: "G1", 
-					gender: "m", 
+					floor: "1", 
+					gender: "male", 
 					count: 35, 
 					status: "dirty", 
-					alertTime: "xxx"
+					alertTime: "5:30AM"
 				}, {
 					name: "G1b", 
-					floor: "G1", 
-					gender: "m", 
+					floor: "1", 
+					gender: "male", 
 					count: 3, 
 					status: "clean", 
-					alertTime: "xxx"
+					alertTime: "6:55PM"
 				}, {
 					name: "G2a", 
-					floor: "G2", 
-					gender: "m", 
+					floor: "2", 
+					gender: "female", 
 					count: 22, 
 					status: "dirty", 
-					alertTime: "xxx"
+					alertTime: "2:54PM"
 				}, {
 					name: "F1a", 
-					floor: "F1", 
-					gender: "m", 
+					floor: "3", 
+					gender: "male", 
 					count: 15, 
-					status: "clean", 
+					status: "warning", 
 					alertTime: "xxx"
 				}, {
 					name: "F1b", 
-					floor: "F1", 
-					gender: "m", 
+					floor: "3", 
+					gender: "female", 
 					count: 11, 
 					status: "clean", 
 					alertTime: "xxx"
 				}, {
 					name: "F2a", 
-					floor: "F2", 
-					gender: "m", 
+					floor: "4", 
+					gender: "male", 
 					count: 6, 
 					status: "clean", 
 					alertTime: "xxx"
 				}, {
 					name: "F2b", 
-					floor: "F2", 
-					gender: "m", 
+					floor: "4", 
+					gender: "male", 
 					count: 12, 
-					status: "clean", 
+					status: "warning", 
 					alertTime: "xxx"
 				}, {
 					name: "F3", 
-					floor: "F3", 
-					gender: "m", 
+					floor: "5", 
+					gender: "female", 
 					count: 26, 
 					status: "dirty", 
 					alertTime: "xxx"
 				}, {
 					name: "F4", 
-					floor: "F4", 
-					gender: "m", 
+					floor: "6", 
+					gender: "male", 
 					count: 2, 
 					status: "clean", 
 					alertTime: "xxx"
 				}];
 			}
+			
+			var floors = {};
+			var rows = [];
+			for (var i = 0, l = data.length; i < l; i++) {
+				var item = data[i];
+				
+				if (floors[item.floor]) {
+					floors[item.floor].push(item);
+				} else {
+					floors[item.floor] = [item];
+				}
+			}
+			
+			$scope.data = floors;
 		})
 });
 
@@ -134,4 +156,31 @@ myApp.filter('formatter', function($filter) {
 			return unescape(filterValue);
 		}
 	};
+});
+
+myApp.controller('AccordionDemoCtrl', function ($scope) {
+  $scope.oneAtATime = true;
+
+  $scope.groups = [
+    {
+      title: 'Dynamic Group Header - 1',
+      content: 'Dynamic Group Body - 1'
+    },
+    {
+      title: 'Dynamic Group Header - 2',
+      content: 'Dynamic Group Body - 2'
+    }
+  ];
+
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+
+  $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
 });
