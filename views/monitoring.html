@@ -3,7 +3,7 @@
 		<div class="myStyle-squareCard title">
 			<b>Floor {{ floorName }}</b>
 		</div>
-		<div ng-repeat="row in floorValue | orderBy: 'row.count'" class="myStyle-smallCard myStyle-squareCard mdl-shadow--2dp ng-scope">
+		<div ng-repeat="row in floorValue | orderBy: 'row.count'" class="myStyle-smallCard myStyle-squareCard mdl-shadow--2dp ng-scope" ng-click="onToiletCleanAction(row)">
 			<div class="card-title" ng-class="row.status">
 			</div>
 			<span class="mdl-badge card-count-balloon" data-badge="{{ row.count }}">
