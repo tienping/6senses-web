@@ -58,50 +58,73 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 		floor: "1", 
 		gender: "male", 
 		count: 35, 
+		status: "warning", 
+		alertTime: "5:30AM", 
+		device_id: "some id"
+	}, {
+		name: "G2b", 
+		floor: "1", 
+		gender: "male", 
+		count: 63, 
 		status: "dirty", 
-		alertTime: "5:30AM"
+		alertTime: "6:55PM", 
+		device_id: "some id"
+	}, {
+		name: "G4a", 
+		floor: "2", 
+		gender: "female", 
+		count: 42, 
+		status: "warning", 
+		alertTime: "2:54PM", 
+		device_id: "some id"
 	}, {
 		name: "G1b", 
 		floor: "1", 
 		gender: "male", 
 		count: 3, 
 		status: "clean", 
-		alertTime: "6:55PM"
+		alertTime: "6:55PM", 
+		device_id: "some id"
 	}, {
 		name: "G2a", 
 		floor: "2", 
 		gender: "female", 
 		count: 22, 
-		status: "dirty", 
-		alertTime: "2:54PM"
+		status: "warning", 
+		alertTime: "2:54PM", 
+		device_id: "some id"
 	}, {
 		name: "F1a", 
 		floor: "3", 
 		gender: "male", 
 		count: 15, 
-		status: "warning", 
-		alertTime: "xxx"
+		status: "clean", 
+		alertTime: "5:30PM", 
+		device_id: "some id"
 	}, {
 		name: "F1b", 
 		floor: "3", 
 		gender: "female", 
-		count: 11, 
-		status: "clean", 
-		alertTime: "xxx"
+		count: 45, 
+		status: "warning", 
+		alertTime: "7:35AM", 
+		device_id: "some id"
 	}, {
 		name: "F2a", 
-		floor: "4", 
+		floor: "5", 
 		gender: "male", 
 		count: 6, 
 		status: "clean", 
-		alertTime: "xxx"
-	} {
+		alertTime: "9:11AM", 
+		device_id: "some id"
+	}, {
 		name: "F6", 
 		floor: "8", 
 		gender: "male", 
-		count: 2, 
-		status: "clean", 
-		alertTime: "xxx"
+		count: 52, 
+		status: "dirty", 
+		alertTime: "3:07PM", 
+		device_id: "some id"
 	}];
 	
 	$http.get("https://thawing-hollows-2664.herokuapp.com/api/doors")
@@ -109,17 +132,21 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 			if (response) {
 				//data = response.concat(fakeData);
 				data = response;
+				data = response.concat(fakeData);
 				
 				var floors = {};
 				var rows = [];
+				var counter = {};
 				for (var i = 0, l = data.length; i < l; i++) {
 					var item = data[i];
 					
-					if (item.floor) {
+					if (item.floor && (!counter[item.floor] || counter[item.floor] <= 4)) {
 						if (floors[item.floor]) {
 							floors[item.floor].push(item);
+							counter[item.floor] += 1;
 						} else {
 							floors[item.floor] = [item];
+							counter[item.floor] = 1;
 						}
 					}
 				}
@@ -137,14 +164,17 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 						
 						var floors = {};
 						var rows = [];
+						var counter = {};
 						for (var i = 0, l = data.length; i < l; i++) {
 							var item = data[i];
 							
-							if (item.floor) {
+							if (item.floor && (!counter[item.floor] || counter[item.floor] <= 4)) {
 								if (floors[item.floor]) {
 									floors[item.floor].push(item);
+									counter[item.floor] += 1;
 								} else {
 									floors[item.floor] = [item];
+									counter[item.floor] = 1;
 								}
 							}
 						}
