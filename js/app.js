@@ -6,8 +6,8 @@ var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 myApp.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
-			templateUrl : 'views/notifications.html',
-			controller  : 'notificationsController'
+			templateUrl : 'views/monitoring.html',
+			controller  : 'monitoringController'
 		})
 		.when('/notifications', {
 			templateUrl : 'views/notifications.html',
@@ -17,8 +17,8 @@ myApp.config(function($routeProvider, $locationProvider) {
 			templateUrl : 'views/monitoring.html',
 			controller  : 'monitoringController'
 		})
-		.when('/security', {
-			templateUrl : 'views/security.html',
+		.when('/summary', {
+			templateUrl : 'views/summary.html',
 			controller  : 'notificationsController'
 		});
 });
@@ -32,8 +32,7 @@ myApp.controller('notificationsController', function($scope, $http, $routeParams
 	$http.get("https://thawing-hollows-2664.herokuapp.com/api/doors")
 		.success(function (response) {
 			if (response) {
-				$scope.data = response.data;
-				$scope.total = response.total;
+				$scope.data = response;
 			}
 		}
 	);
@@ -42,7 +41,7 @@ myApp.controller('notificationsController', function($scope, $http, $routeParams
 myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 	$scope.onToiletCleanAction = function onToiletCleanAction(targetID) {
 		alert("clean toilet to be built");
-		/*$http.get("http://tienpingx2.96.lt/php/searchResult.php?studentID=1")
+		/*$http.get("https://thawing-hollows-2664.herokuapp.com/api/doors")
 			.success(function (response) {
 				if (response) {
 					$scope.data = response.data;
@@ -52,7 +51,7 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 		);*/
 	};
 	
-	$http.get("index.php")
+	$http.get("https://thawing-hollows-2664.herokuapp.com/api/doors")
 		.success(function (response) {
 			if (response) {
 				var data = [{
@@ -133,21 +132,23 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 					status: "clean", 
 					alertTime: "xxx"
 				}];
-			}
 			
-			var floors = {};
-			var rows = [];
-			for (var i = 0, l = data.length; i < l; i++) {
-				var item = data[i];
+				data = data.concat(response)
 				
-				if (floors[item.floor]) {
-					floors[item.floor].push(item);
-				} else {
-					floors[item.floor] = [item];
+				var floors = {};
+				var rows = [];
+				for (var i = 0, l = data.length; i < l; i++) {
+					var item = data[i];
+					
+					if (floors[item.floor]) {
+						floors[item.floor].push(item);
+					} else {
+						floors[item.floor] = [item];
+					}
 				}
+				
+				$scope.data = floors;
 			}
-			
-			$scope.data = floors;
 		})
 });
 

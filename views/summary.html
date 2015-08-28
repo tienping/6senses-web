@@ -1,0 +1,20 @@
+<div class="mdl-card mdl-shadow--2dp dashboard-card ng-scope">
+	<div id="dashboard-showSearch-view" class="dashboard-ng-view-container">
+		<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+			<thead>
+				<tr class="ng-scope">
+					<th class="mdl-data-table__cell--non-numeric ng-binding">Name</</td>
+					<th class="mdl-data-table__cell--non-numeric ng-binding">Device</</td>
+					<th class="ng-binding">Count</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="row in data" class="ng-scope">
+					<td class="mdl-data-table__cell--non-numeric ng-binding">{{ row.name }}</</td>
+					<td class="mdl-data-table__cell--non-numeric ng-binding">{{ row.device_id }}</</td>
+					<td class="ng-binding">{{ row.count }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

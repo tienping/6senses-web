@@ -2,6 +2,10 @@
 	background-color: #E0F2F1 !important;
 }
 
+.dashboard-panel-container {
+	margin: 3%;
+}
+
 .dashboard-ng-view-container {
 	padding: 5% 5% 5% 5%;
 }
@@ -35,7 +39,7 @@
 	position: relative;
 	background: #fff;
 	box-sizing: border-box;
-	margin: 5px 15%;
+	margin: 2px 5%;
 }
 
 .myStyle-smallCard .dashboard-ng-view-container {
