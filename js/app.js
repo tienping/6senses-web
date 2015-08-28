@@ -42,15 +42,41 @@ myApp.controller('notificationsController', function($scope, $http, $routeParams
 
 myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 	$scope.onToiletCleanAction = function onToiletCleanAction(targetDeviceID, count) {
-		alert("clean toilet to be built");
-		/*$http.get("https://thawing-hollows-2664.herokuapp.com/api/doors")
+		$http.put("https://thawing-hollows-2664.herokuapp.com/api/doors/clean", {"devide_id": targetDeviceID})
 			.success(function (response) {
 				if (response) {
-					$scope.data = response.data;
-					$scope.total = response.total;
+					$scope.data = response;
+					alert("Toilet clean, good job!!");
+					$http.get("https://thawing-hollows-2664.herokuapp.com/api/doors")
+						.success(function (response) {
+							if (response) {
+								data = response;
+								data = response.concat(fakeData);
+								
+								var floors = {};
+								var rows = [];
+								var counter = {};
+								for (var i = 0, l = data.length; i < l; i++) {
+									var item = data[i];
+									
+									if (item.floor && (!counter[item.floor] || counter[item.floor] <= 4)) {
+										if (floors[item.floor]) {
+											floors[item.floor].push(item);
+											counter[item.floor] += 1;
+										} else {
+											floors[item.floor] = [item];
+											counter[item.floor] = 1;
+										}
+									}
+								}
+								
+								$scope.data = floors;
+							}
+						})
+					
 				}
 			}
-		);*/
+		);
 	};
 	
 	var fakeData = [{
@@ -74,7 +100,7 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 		floor: "2", 
 		gender: "female", 
 		count: 42, 
-		status: "warning", 
+		status: "clean", 
 		alertTime: "2:54PM", 
 		device_id: "some id"
 	}, {
@@ -90,7 +116,7 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 		floor: "2", 
 		gender: "female", 
 		count: 22, 
-		status: "warning", 
+		status: "clean", 
 		alertTime: "2:54PM", 
 		device_id: "some id"
 	}, {
@@ -122,7 +148,7 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 		floor: "8", 
 		gender: "male", 
 		count: 52, 
-		status: "dirty", 
+		status: "warning", 
 		alertTime: "3:07PM", 
 		device_id: "some id"
 	}];
@@ -182,7 +208,7 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 						$scope.data = floors;
 					}
 				})
-		}, 1 * 1000);
+		}, 3 * 1000);
 });
 
 myApp.filter('formatter', function($filter) {
