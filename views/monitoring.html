@@ -1,26 +1,33 @@
-<div ng-repeat="(floorName, floorValue) in data" class="floor-div">
+<div ng-repeat="(floorName, floorValue) in data | orderBy: '-floorValue[0].floor'" class="floor-div">
 	<div>
-		<b>{{ floorName }}</b>
-	</div>
-	<div>
-		<div ng-repeat="row in floorValue | orderBy: 'row.status'" class="myStyle-smallCard myStyle-squareCard mdl-shadow--2dp ng-scope">
-			<div id="dashboard-square-card-view" class="dashboard-ng-view-container" ng-class="{'alert-card': row.status == 'dirty'}">
-				<div class="card-title" ng-class="row.status">
-					{{ row.name }}
-				</div>
+		<div class="myStyle-squareCard title">
+			<b>Floor {{ floorName }}</b>
+		</div>
+		<div ng-repeat="row in floorValue | orderBy: 'row.count'" class="myStyle-smallCard myStyle-squareCard mdl-shadow--2dp ng-scope">
+			<div class="card-title" ng-class="row.status">
+			</div>
+			<span class="mdl-badge card-count-balloon" data-badge="{{ row.count }}">
+			</span>
+			<div id="dashboard-square-card-view" class="dashboard-ng-view-container" ng-class="{'alert-cardxxxxxxxx': row.status == 'dirty'}">
 				<div class="card-content">
-					<div class="card-count" ng-class="row.status">
-						{{ row.count }}
-					</div>
-					<div class="card-gender">
-						<img ng-if="row.gender == 'male'" src="http://cdn.flaticon.com/png/256/10522.png" alt="Male Toilet" height="38" width="38" \>
-						<img ng-if="row.gender == 'female'" src="http://cdn.flaticon.com/png/256/76794.png" alt="Female Toilet" height="38" width="38" \>
-					</div>
 					<div class="card-floor">
 						Floor {{ row.floor }}
 					</div>
+					<div class="card-name">
+						Unit {{ row.name }}
+					</div>
+					<div class="card-gender">
+						<img class="card-gender-img" ng-if="row.gender == 'male'" src="../images/male.png" alt="Male Toilet" \>
+						<img class="card-gender-img" ng-if="row.gender == 'female'" src="../images/female.png" alt="Female Toilet" \>
+					</div>
+					<div class="card-alertTimeLabel">
+						Last updated:
+					</div>
 					<div class="card-alertTime">
 						{{ row.alertTime }}
+					</div>
+					<div ng-show="false" class="card-count" ng-class="row.status">
+						{{ row.count }}
 					</div>
 				</div>
 				<div class="card-action" ng-show="row.status=='dirty'" ng-click="onToiletCleanAction(row)">Clean</div>
@@ -28,60 +35,3 @@
 		</div>
 	</div>
 </div>
-
-  <accordion close-others="oneAtATime">
-    <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-      This content is straight in the template.
-    </accordion-group>
-    <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
-      {{group.content}}
-    </accordion-group>
-    <accordion-group heading="Dynamic Body Content">
-      <p>The body of the accordion group grows to fit the contents</p>
-        <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-        <div ng-repeat="item in items">{{item}}</div>
-    </accordion-group>
-    <accordion-group is-open="status.open">
-        <accordion-heading>
-            I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-        </accordion-heading>
-        This is just some content to illustrate fancy headings.
-    </accordion-group>
-  </accordion>
-
-
-
-<!--
-<div ng-controller="AccordionDemoCtrl">
-  <p>
-    <button type="button" class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
-    <button type="button" class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
-  </p>
-
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" ng-model="oneAtATime">
-      Open only one at a time
-    </label>
-  </div>
-  <accordion close-others="oneAtATime">
-    <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-      This content is straight in the template.
-    </accordion-group>
-    <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
-      {{group.content}}
-    </accordion-group>
-    <accordion-group heading="Dynamic Body Content">
-      <p>The body of the accordion group grows to fit the contents</p>
-        <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-        <div ng-repeat="item in items">{{item}}</div>
-    </accordion-group>
-    <accordion-group is-open="status.open">
-        <accordion-heading>
-            I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-        </accordion-heading>
-        This is just some content to illustrate fancy headings.
-    </accordion-group>
-  </accordion>
-</div>
--->

@@ -29,7 +29,7 @@ myApp.controller('mainController', function($scope) {
 });
 
 myApp.controller('notificationsController', function($scope, $http, $routeParams) {
-	$http.get("http://tienpingx2.96.lt/php/searchResult.php?studentID=1")
+	$http.get("https://thawing-hollows-2664.herokuapp.com/api/doors")
 		.success(function (response) {
 			if (response) {
 				$scope.data = response.data;
@@ -118,6 +118,20 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 					count: 2, 
 					status: "clean", 
 					alertTime: "xxx"
+				}, {
+					name: "F5", 
+					floor: "7", 
+					gender: "female", 
+					count: 26, 
+					status: "dirty", 
+					alertTime: "xxx"
+				}, {
+					name: "F6", 
+					floor: "8", 
+					gender: "male", 
+					count: 2, 
+					status: "clean", 
+					alertTime: "xxx"
 				}];
 			}
 			
@@ -137,17 +151,6 @@ myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 		})
 });
 
-myApp.controller('notificationsController', function($scope, $http, $routeParams) {
-	$http.get("http://tienpingx2.96.lt/php/searchResult.php?studentID=1")
-		.success(function (response) {
-			if (response) {
-				$scope.data = response.data;
-				$scope.total = response.total;
-			}
-		}
-	);
-});
-
 myApp.filter('formatter', function($filter) {
 	return function() {
 		var filterValue = arguments[0];
@@ -156,31 +159,4 @@ myApp.filter('formatter', function($filter) {
 			return unescape(filterValue);
 		}
 	};
-});
-
-myApp.controller('AccordionDemoCtrl', function ($scope) {
-  $scope.oneAtATime = true;
-
-  $scope.groups = [
-    {
-      title: 'Dynamic Group Header - 1',
-      content: 'Dynamic Group Body - 1'
-    },
-    {
-      title: 'Dynamic Group Header - 2',
-      content: 'Dynamic Group Body - 2'
-    }
-  ];
-
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
-
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
 });

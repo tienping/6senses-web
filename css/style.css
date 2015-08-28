@@ -1,3 +1,7 @@
+.myStyle-main-content {
+	background-color: #E0F2F1 !important;
+}
+
 .dashboard-ng-view-container {
 	padding: 5% 5% 5% 5%;
 }
@@ -9,7 +13,7 @@
 
 .demo-layout .mdl-layout__header {
 	color: white !important;
-	background-color: #3F51B6 !important;
+	background-color: #00BCD4 !important;
 }
 
 .myStyle-smallCard {
@@ -30,10 +34,8 @@
 	z-index: 1;
 	position: relative;
 	background: #fff;
-	border-radius: 2px;
 	box-sizing: border-box;
 	margin: 5px 15%;
-	border-radius: 15px;
 }
 
 .myStyle-smallCard .dashboard-ng-view-container {
@@ -45,28 +47,41 @@
 }
 
 .myStyle-squareCard {
-	width: 115px;
-	margin: 1% 0.8%;
+	width: 200px;
+    margin: 0.6% 0.8%;
 	float: left;
+	height: 60px;
+}
+
+.card-count-balloon {
+    position: absolute;
+    right: -1%;
+    top: 12%;
+}
+
+.myStyle-squareCard.title {
+	width: 70px;
+    line-height: 60px;
+    font-size: large;
 }
 
 .myStyle-squareCard  .card-title {
 	text-align: center;
 	padding: 2% 2%;
-	border-radius: 15px 15px 0px 0px;
 	background-color: lightgray;
+	height: 8px;
 }
 
 .myStyle-squareCard  .card-title.clean {
-	background-color: lime;
+	background-color: #8BC34A;
 }
 
 .myStyle-squareCard  .card-title.warning {
-	background-color: orange;
+	background-color: #FFC107;
 }
 
 .myStyle-squareCard  .card-title.dirty {
-	background-color: red;
+	background-color: #F44336;
 }
 
 .myStyle-squareCard  .card-content {
@@ -77,7 +92,6 @@
 	float: left;
 	background-color: salmon;
 	color: black;
-	border-radius: 15px;
 	margin: 3%;
 	padding: 12%;
 	position: absolute;
@@ -102,27 +116,45 @@
 	float: left;
 }
 
-.myStyle-squareCard  .card-floor {
-	float: right;
-    font-size: small;
+.myStyle-squareCard  .card-gender-img {
+	height: 25px;
+	width: 25px;
+}
+
+.myStyle-squareCard  .card-name {
+	float: left;
 	font-style: italic;
-    margin: 0% 0% 4% 0%;
+    margin: 0% 4% 0% 0%;
+}
+
+.myStyle-squareCard  .card-floor {
+	float: left;
+    margin: 0% 4% 0% 0%;
+	display: none;
+}
+
+.myStyle-squareCard  .card-alertTimeLabel {
+    float: right;
+    height: 12px;
+	color: #999;
+    font-size: 10.5px;
 }
 
 .myStyle-squareCard  .card-alertTime {
     float: right;
-    margin: 0% 0% 4% 0%;
+	color: #777;
+	font-size: small;
 }
 
 .alert-card {
   -webkit-animation-name: blinker;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
-  -webkit-animation-duration: 3s;
+  -webkit-animation-duration: 1s;
 }
 
 @-webkit-keyframes blinker {
 	0% { background-color: yellow; }
-	50% { background-color: #FFFF66; }
+	50% { background-color: red; }
 	100% { background-color: yellow; }
 }
