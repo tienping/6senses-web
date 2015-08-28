@@ -42,7 +42,7 @@ myApp.controller('notificationsController', function($scope, $http, $routeParams
 
 myApp.controller('monitoringController', function($scope, $http, $routeParams) {
 	$scope.onToiletCleanAction = function onToiletCleanAction(targetDeviceID, count) {
-		$http.put("https://thawing-hollows-2664.herokuapp.com/api/doors/clean", {"devide_id": targetDeviceID})
+		$http.put("https://thawing-hollows-2664.herokuapp.com/api/doors/clean", {"device_id": targetDeviceID})
 			.success(function (response) {
 				if (response) {
 					$scope.data = response;
